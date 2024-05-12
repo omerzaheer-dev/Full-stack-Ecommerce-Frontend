@@ -1,0 +1,28 @@
+const backendDomain = "http://localhost:8080"
+const summaryApi = {
+    signUp:{
+        url: `${backendDomain}/api/v1/users/register`,
+        method: "POST"
+    },
+    signIn:{
+        url: `${backendDomain}/api/v1/users/login`,
+        method: "POST"
+    },
+    currentUser:{
+        url: `${backendDomain}/api/v1/users/userdetails`,
+        method: "GET"
+    },
+    logoutUser:{
+        url: `${backendDomain}/api/v1/users/logout`,
+        method: "GET"
+    },
+    allUsers:{
+        url: `${backendDomain}/api/v1/admin/all-users`,
+        method: "GET"
+    },
+    updateUserRole:{
+        url: `${backendDomain}/api/v1/admin/update-user-role`,
+        method: "PATCH"
+    },
+}
+export default summaryApi
