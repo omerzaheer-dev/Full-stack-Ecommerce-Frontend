@@ -24,5 +24,9 @@ const summaryApi = {
         url: `${backendDomain}/api/v1/admin/update-user-role`,
         method: "PATCH"
     },
+    uploadProduct:{
+        url: `${backendDomain}/api/v1/product/upload-products`,
+        method: "POST"
+    },
 }
 export default summaryApi
