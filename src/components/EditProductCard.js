@@ -7,19 +7,19 @@ import DisplayImage from './DisplayImage';
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { toast } from 'react-toastify';
 import '../App.css'
-const UploadProduct = ({onClose,refetchData}) => {
+const EditProductCard = ({onClose,product,refetchData}) => {
 
   const [displayFullImage,setdisplayFullImage] = useState("")
   const [openFullImage,setopenFullImage] = useState(false)
   const [submitDisable,setsubmitDisable] = useState(true)
   const [data,setData] = useState({
-    productName:"",
-    price:"",
-    description:"",
+    productName:product.productName,
+    price:product.price,
+    description:product.description,
     productImage:[],
-    brand:"",
-    category:"airpods",
-    sellingPrice:""
+    brand:product.brand,
+    category:product.category,
+    sellingPrice:product.sellingPrice,
   })
   useEffect(()=>{
     if(data.productName === "" || data.price === "" || data.description === "" || data.brand === "" || data.category === "" || data.sellingPrice === ""){
@@ -28,7 +28,7 @@ const UploadProduct = ({onClose,refetchData}) => {
       setsubmitDisable(false)
     }
   },[data])
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedImages, setSelectedImages] = useState(product.productImage);
   const handleChange = (e) => {
     const {name, value} = e.target
     setData((prev)=>{
@@ -43,7 +43,7 @@ const UploadProduct = ({onClose,refetchData}) => {
     if(files.length>1){
       if (files) {
         const fileArray = Array.from(files).map(file => URL.createObjectURL(file));
-        setSelectedImages(fileArray);
+        setSelectedImages(prevData => [...prevData,fileArray]);
         setData(prevData => ({
           ...prevData,
           productImage: [...prevData.productImage,...files]
@@ -62,6 +62,9 @@ const UploadProduct = ({onClose,refetchData}) => {
   }
   const handleUploadProductSubmit = async (e) => {
     e.preventDefault()
+    const removePreviousImagesUrl = product.productImage.filter(element =>!selectedImages.includes(element));;
+    console.log("igp",selectedImages)
+    console.log("rem",removePreviousImagesUrl)
     if(submitDisable){
       toast.warning("All fields are required")
     }else{
@@ -70,14 +73,21 @@ const UploadProduct = ({onClose,refetchData}) => {
         data.productImage.map((file)=>
           formData.append('productImages',file)
         )
+        }
       formData.append('productName', data.productName);
+      formData.append('orignalProductName', product.productName);
       formData.append('price', data.price);
       formData.append('description', data.description);
       formData.append('category', data.category);
       formData.append('brand', data.brand);
       formData.append('sellingPrice', data.sellingPrice);
-      const dataResponse = await fetch(summaryApi.uploadProduct.url,{
-        method:summaryApi.uploadProduct.method,
+      if(removePreviousImagesUrl.length>0){
+        formData.append('removePreviousImagesUrl',removePreviousImagesUrl);
+      }else{
+        formData.append('removePreviousImagesUrl',"");
+      }
+      const dataResponse = await fetch(summaryApi.updateProduct.url,{
+        method:summaryApi.updateProduct.method,
         body:formData,
         credentials:"include"
       })
@@ -88,18 +98,14 @@ const UploadProduct = ({onClose,refetchData}) => {
       }else{
         toast.error(dataApi.message)
       }
-      }
-      else{
-        toast.error("please upload a product image")
-      }
     }
   }
   const disSelectImage = (index) => {
-    setSelectedImages(prevImages => prevImages.filter((_, i) => i!== index));
-    setData(prevData => ({
-      ...prevData,
-      productImage: prevData.productImage.filter((_, i) => i!== index)
-     }));
+      setSelectedImages(prevImages => prevImages.filter((_, i) => i!== index));
+      setData(prevData => ({
+        ...prevData,
+        productImage: prevData.productImage.filter((_, i) => i!== index)
+      }));
   }
   return (
     <div className='fixed bg-slate-200 w-full h-full left-0 top-0 flex items-center justify-center bg-opacity-40'>
@@ -199,7 +205,7 @@ const UploadProduct = ({onClose,refetchData}) => {
         className='py-1 px-2 rounded bg-slate-100 border outline-slate-200'
         />
 
-        <button className='px-20 py-2 mt-4 bg-red-600 rounded-md text-white font-medium font-serif text-xl hover:scale-105 transition-all hover:bg-red-700 block mx-auto'>Upload Product</button>
+        <button className='px-20 py-2 mt-4 bg-red-600 rounded-md text-white font-medium font-serif text-xl hover:scale-105 transition-all hover:bg-red-700 block mx-auto'>Update Product</button>
       </form>
       </div>
       {
@@ -209,4 +215,4 @@ const UploadProduct = ({onClose,refetchData}) => {
   )
 }
 
-export default UploadProduct
+export default EditProductCard

@@ -28,5 +28,13 @@ const summaryApi = {
         url: `${backendDomain}/api/v1/product/upload-products`,
         method: "POST"
     },
+    updateProduct:{
+        url: `${backendDomain}/api/v1/product/update-products`,
+        method: "PATCH"
+    },
+    getAllProducts:{
+        url: `${backendDomain}/api/v1/product/get-all-products`,
+        method: "GET"
+    },
 }
 export default summaryApi
