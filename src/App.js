@@ -22,13 +22,13 @@ function App() {
 
     }
     else{
-      console.log("error while fetching user details")
+      dispatch(setUserDetails(null))
     }
   }
 
-  // useEffect(()=>{
-  //   fetchUserDetails()
-  // },[])
+  useEffect(()=>{
+    fetchUserDetails()
+  },[])
 
 
 

@@ -7,6 +7,7 @@ import Signup from "../pages/Signup";
 import AdminPanel from "../pages/AdminPanel";
 import AllUsers from "../pages/AllUsers";
 import Products from "../pages/AllProducts";
+import ProtectedRoutes from "../components/ProtectedRoutes";
 
   const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ import Products from "../pages/AllProducts";
         {
           path: "sign-up",
           element: <Signup />,
+        },
+        {
+          path: "sign/o/p",
+          element: <ProtectedRoutes />,
         },
         {
           path: "admin-panel/",
