@@ -4,29 +4,15 @@ import RoleObj from "../common/Role";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { setUserDetails } from "../store/userSlice";
-import summaryApi from "../common";
-import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import UseLogoutHook from "../hooks/UseLogoutHook";
 const Header = () => {
   const user = useSelector((state) => state?.user?.user?.user);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [displayMenu, setDisplayMenu] = useState(false);
+  const {logout} = UseLogoutHook()
   const handleLogout = async () => {
-    const fetchData = await fetch(summaryApi.logoutUser.url, {
-      method: summaryApi.logoutUser.method,
-      credentials: "include",
-    });
-    const data = await fetchData.json();
-    if (data.success) {
-      toast.success(data.message);
-      dispatch(setUserDetails(null));
-      navigate("/login");
-    } else {
-      toast.success("Failed to logout user");
-    }
+    await logout()
   };
   return (
     <header className="shadow-md h-16 bg-white">

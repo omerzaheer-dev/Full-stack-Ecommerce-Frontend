@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { FaEdit } from "react-icons/fa";
 import moment from "moment"
 import ChangeUserRole from '../components/ChangeUserRole';
+import UseLogout from "../hooks/UseLogoutHook"
 const AllUsers = () => {
   const [users,setUsers] = useState([])
   const [openUpdateRole,setOpenUpdateRole]=useState(false)
@@ -14,7 +15,7 @@ const AllUsers = () => {
     Role:""
   })
   const user = useSelector((state) => state?.user?.user?.user);
-
+  const { logout } = UseLogout()
   const fetchAllUsers = async () => {
     if(user?.Role==="GENERAL"){
       toast.warning("Only Admin can watch")
@@ -22,19 +23,20 @@ const AllUsers = () => {
     else{
       const fetchData = await fetch(summaryApi.allUsers.url,{
         method:summaryApi.allUsers.method,
-        credentials:"include"
+        credentials:"include",
       })
       const dataResponse = await fetchData.json()
       if(dataResponse.success){
         setUsers(dataResponse?.data?.Users)
-      }else{
-        toast.error("Something went wrong")
       }
+      if(dataResponse?.statusCode===406){
+          await logout()
+        }
     }
     }
 
   useEffect(()=>{
-    fetchAllUsers()
+      fetchAllUsers()
   },[])
 
 

@@ -32,7 +32,7 @@ const Login = () => {
     })
   }
   useEffect(()=>{
-    if(data.email === "" || data.name === "" || data.password === "" || data.confirmPassword === ""){
+    if(data.email === "" || data.password === ""){
       setsubmitDisable(true)
     }else{
       setsubmitDisable(false)
@@ -44,21 +44,25 @@ const Login = () => {
       toast.warning("All fields are required")
     }
     else{
-      const dataResponse = await fetch(summaryApi.signIn.url,{
-        method:summaryApi.signIn.method,
-        credentials:'include',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify(data)
-      })
-      const dataApi = await dataResponse.json()
-      if(dataApi.success){
-        navigate('/')
-        toast.success(dataApi.message)
-        fetchUserDetails()
-      }else{
-        toast.error(dataApi.message)
+      try {
+        const dataResponse = await fetch(summaryApi.signIn.url,{
+          method:summaryApi.signIn.method,
+          credentials:'include',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify(data)
+        })
+        const dataApi = await dataResponse.json()
+        if(dataApi.success){
+          navigate('/')
+          toast.success(dataApi.message)
+          fetchUserDetails()
+        }else{
+          toast.error(dataApi.message)
+        }
+      } catch (error) {
+        console.log(error)
       }
     }
   }
