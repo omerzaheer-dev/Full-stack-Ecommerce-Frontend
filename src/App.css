@@ -10,3 +10,8 @@
 .tableClass td {
   @apply text-base border text-center
 }
+
+/* ///hiden scroll bar // */
+.scrollbar-none::-webkit-scrollbar{
+  display: none;
+}

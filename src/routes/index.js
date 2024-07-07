@@ -8,6 +8,7 @@ import AdminPanel from "../pages/AdminPanel";
 import AllUsers from "../pages/AllUsers";
 import Products from "../pages/AllProducts";
 import ProtectedRoutes from "../components/ProtectedRoutes";
+import CategoryProduct from "../pages/CategoryProduct";
 
   const router = createBrowserRouter([
     {
@@ -31,8 +32,8 @@ import ProtectedRoutes from "../components/ProtectedRoutes";
           element: <Signup />,
         },
         {
-          path: "sign/o/p",
-          element: <ProtectedRoutes />,
+          path: "product-category/:categoryName",
+          element: <CategoryProduct />,
         },
         {
           path: "admin-panel/",
