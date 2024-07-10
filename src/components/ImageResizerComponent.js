@@ -25,14 +25,14 @@ const resizeImage = (file, maxWidth, maxHeight, outputType, quality, callback) =
   );
 };
 
-const ImageResizerComponent = ({imgUrl,Width,Height}) => {
+const ImageResizerComponent = ({imgUrl,Width,Height,ph,pw}) => {
   const imageUrl = imgUrl;
   const [resizedImage, setResizedImage] = useState('');
 
   const handleResize = async () => {
     try {
       const file = await fetchImageAsFile(imageUrl);
-      resizeImage(file, Width, Height, 'JPEG', 100, (resizedImage) => {
+      resizeImage(file, Width, Height, 'PNG', 100, (resizedImage) => {
         setResizedImage(resizedImage);
       });
     } catch (error) {
@@ -45,10 +45,10 @@ const ImageResizerComponent = ({imgUrl,Width,Height}) => {
   },[imageUrl])
 
   return (
-    <div>
+    <div >
       {resizedImage && (
-        <div>
-          <img src={resizedImage} alt="Resized" />
+        <div className={`h-[${ph}px] w-[${pw}]px bg-slate-200`}>
+          <img src={resizedImage} alt="Resized" className='object-fill w-full h-full' style={{ backgroundColor: 'transparent'}} />
         </div>
       )}
     </div>

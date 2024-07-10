@@ -33,7 +33,7 @@ const Products = () => {
         <button onClick={()=>setOpenUploadProducts(true)} className='border-2 border-red-600 text-red-600 py-1 px-3 hover:bg-red-600 rounded-lg transition-all hover:text-white'>Upload Product</button>
       </div>
       <div>
-      <div className="flex flex-wrap py-6 pl-6 gap-10">
+      <div className="flex flex-wrap py-6 pl-14 gap-12">
             {
               products && products.map((product,index)=>{
                 return (

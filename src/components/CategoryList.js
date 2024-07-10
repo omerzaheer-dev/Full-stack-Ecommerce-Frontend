@@ -37,7 +37,7 @@ const CategoryList = () => {
             </div>
         ) :
         (
-                <div className="flex items-center py-3 md:px-11 px-5 md:gap-4 gap-3 overflow-scroll scrollbar-none cursor-pointer">
+                <div className="flex items-center py-3 md:px-11 px-5 md:gap-6 gap-4 overflow-scroll scrollbar-none cursor-pointer">
                     {
                         categoryList.map((category,index) => {
                             return (

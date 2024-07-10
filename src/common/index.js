@@ -40,9 +40,9 @@ const summaryApi = {
         url: `${backendDomain}/api/v1/product/get-categoryProduct`,
         method: "GET"
     },
-    // getCategoryProduct:{
-    //     url: `${backendDomain}/api/v1/product/get-categoryProduct`,
-    //     method: "GET"
-    // },
+    getOneCategoryProduct:{
+        url: `${backendDomain}/api/v1/product/get-one-categoryProduct`,
+        method: "POST"
+    },
 }
 export default summaryApi
