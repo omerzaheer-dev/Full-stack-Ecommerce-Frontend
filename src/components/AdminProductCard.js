@@ -7,14 +7,14 @@ const AdminProductCard = ({data,refetchData}) => {
   const [EditProduct,setEditProduct] = useState(false)
   return (
               <div>
-                <div className="max-w-[247px] max-h-[450px] rounded overflow-hidden shadow-lg">
-                    <div className="h-[220px] w-[247px] bg-white">
-                    <ImageResizerComponent imgUrl={data?.productImage[0]} Width={247} Height={220} ph={220} pw={247}/>
+                <div className="w-[235px] h-[295px] rounded overflow-hidden shadow-lg">
+                    <div className="h-[225px] w-[235px] bg-slate-200 overflow-hidden flex items-center justify-center">
+                      <ImageResizerComponent imgUrl={data?.productImage[0]} Width={172} Height={178} ph={200} pw={180}/>
                     </div>               
-                        <div className='max-w-[247px] max-h-[150px]'>
+                        <div className='w-[235px] h-[65px]'>
                             <div className='flex items-center px-6 justify-between pb-[2px] pt-2'>
                                 <div className="font-semibold line-clamp-1">{data?.productName}</div>
-                                <div onClick={()=>setEditProduct(true)} className='rounded-full p-[2px] hover:bg-green-600 hover:text-white font-bold text-md'>
+                                <div onClick={()=>setEditProduct(true)} className='rounded-full p-1 hover:bg-green-600 hover:text-white font-bold text-md'>
                                   <MdModeEdit/>
                                 </div>
                             </div>

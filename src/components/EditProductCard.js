@@ -108,7 +108,7 @@ const EditProductCard = ({onClose,product,refetchData}) => {
       }));
   }
   return (
-    <div className='fixed bg-slate-200 w-full h-full left-0 top-0 flex items-center justify-center bg-opacity-40'>
+    <div className='fixed z-30 bg-slate-200 w-full h-full left-0 top-0 flex items-center justify-center bg-opacity-40'>
       <div className='py-2 px-4 bg-white w-full h-full max-w-lg max-h-[70%] overflow-hidden'>
       <div className='flex pb-2 items-center justify-between text-xl font-semibold'>
         <h2>Product</h2>

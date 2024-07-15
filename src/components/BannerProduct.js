@@ -11,6 +11,7 @@ import mobile5 from "../assest/banner/img5_mobile.png"
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa6";
 import { useEffect, useState } from "react"
+import ImageResizerComponent from "./ImageResizerComponent"
 const BannerProduct = () => {
     const [currentImage,setCurrentImage] = useState(0)
     const desktopBanner = [banner1,banner2,banner3,banner4,banner5]

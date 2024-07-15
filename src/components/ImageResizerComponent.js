@@ -25,10 +25,9 @@ const resizeImage = (file, maxWidth, maxHeight, outputType, quality, callback) =
   );
 };
 
-const ImageResizerComponent = ({imgUrl,Width,Height,ph,pw}) => {
+const ImageResizerComponent = ({imgUrl,Width,Height,ph,pw,}) => {
   const imageUrl = imgUrl;
   const [resizedImage, setResizedImage] = useState('');
-
   const handleResize = async () => {
     try {
       const file = await fetchImageAsFile(imageUrl);
@@ -47,8 +46,8 @@ const ImageResizerComponent = ({imgUrl,Width,Height,ph,pw}) => {
   return (
     <div >
       {resizedImage && (
-        <div className={`h-[${ph}px] w-[${pw}]px bg-slate-200`}>
-          <img src={resizedImage} alt="Resized" className='object-fill w-full h-full' style={{ backgroundColor: 'transparent'}} />
+        <div className={`h-[${ph}px] w-[${pw}px] bg-slate-200`}>
+          <img src={resizedImage} alt="Resized" className='object-fill mix-blend-multiply w-full h-full hover:scale-110 transition-all duration-150' />
         </div>
       )}
     </div>
