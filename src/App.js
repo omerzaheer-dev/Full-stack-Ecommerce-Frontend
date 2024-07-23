@@ -7,10 +7,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import summaryApi from "./common/index"
 import Context from "./context"
 import { useEffect } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch  } from "react-redux"
 import { setUserDetails } from "./store/userSlice";
+// import { FetchCartProducts } from "./helpers/FetchCartProducts"
+// import { setCartDetails } from "./store/cartSlice";
 function App() {
   const dispatch = useDispatch()
+  // const { data } = FetchCartProducts();
+  // dispatch(setCartDetails(data?.products));
   const fetchUserDetails = async () => {
     const dataResponse = await fetch(summaryApi.currentUser.url,{
       method:summaryApi.currentUser.method,
@@ -26,9 +30,10 @@ function App() {
     }
   }
 
+
   useEffect(()=>{
     fetchUserDetails()
-  },[])
+  })
 
 
 
@@ -37,7 +42,7 @@ function App() {
     <Context.Provider value={{fetchUserDetails}}>
       <ToastContainer />
       <Header></Header>
-      <main className="min-h-[calc(100vh-20vh)]">
+      <main className="min-h-[calc(100vh-20vh)] mt-16">
         <Outlet/>
       </main>
       <Footer></Footer>

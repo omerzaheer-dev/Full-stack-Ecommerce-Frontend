@@ -44,5 +44,17 @@ const summaryApi = {
         url: `${backendDomain}/api/v1/product/get-one-categoryProduct`,
         method: "POST"
     },
+    getProductDetail:{
+        url: `${backendDomain}/api/v1/product/get-productDetails`,
+        method: "POST"
+    },
+    addToCartProduct:{
+        url: `${backendDomain}/api/v1/cart/add-toCart`,
+        method: "POST"
+    },
+    productsInCart:{
+        url: `${backendDomain}/api/v1/cart/cart`,
+        method: "GET"
+    }
 }
 export default summaryApi

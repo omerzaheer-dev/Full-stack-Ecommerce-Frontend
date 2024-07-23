@@ -9,13 +9,14 @@ import { useSelector } from "react-redux";
 import UseLogoutHook from "../hooks/UseLogoutHook";
 const Header = () => {
   const user = useSelector((state) => state?.user?.user?.user);
+  const cartSelector = useSelector((state) => state?.cart?.cart);
   const [displayMenu, setDisplayMenu] = useState(false);
   const {logout} = UseLogoutHook()
   const handleLogout = async () => {
     await logout()
-  };
+  }
   return (
-    <header className="shadow-md h-16 bg-white">
+    <header className="shadow-md h-16 bg-white w-full fixed top-0 z-30">
       <div className="flex items-center justify-between px-4 py-2">
         <div>
           <Link to="/">
@@ -65,7 +66,9 @@ const Header = () => {
           <div className="flex items-center justify-center relative">
             <FaShoppingCart className="md:text-2xl text-xl" />
             <span className="bg-red-600 py-[2px] lg:py-0 rounded-full md:px-[0.4vw] px-[0.9vw] md:font-semibold text-white absolute bottom-3 md:bottom-4 left-4 text-xs md:text-sm">
-              0
+              {
+                cartSelector && cartSelector.length
+              }
             </span>
           </div>
           {user?._id ? (

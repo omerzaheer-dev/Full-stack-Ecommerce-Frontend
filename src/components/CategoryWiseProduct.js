@@ -1,38 +1,23 @@
 import { FetchCategoryWiseProducts } from "../helpers/FetchCategoryWiseProducts"
 import ImageResizerComponent from "./ImageResizerComponent"
 import "../App.css"
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6"
 import { useRef } from "react"
 import { Link } from "react-router-dom"
 import { AddToCart } from "../helpers/AddToCart"
-import { useDispatch ,useSelector } from 'react-redux';
-const VerticalCardProduct = ({category,heading}) => {
+import { useDispatch , useSelector } from 'react-redux';
+const CategoryWiseProduct = ({category,heading}) => {
+  const dispatch = useDispatch();
     const loadingList = new Array(13).fill(null)
-    const dispatch = useDispatch();
     const cartSelector = useSelector((state) => state?.cart?.cart);
-    // const [scroll,setScroll] = useState(0)
     const scrollRef = useRef()
     const { data, isLoading, } = FetchCategoryWiseProducts(category);
-    const rightScroll = () => {
-      console.log("cartSelector",cartSelector)
-      scrollRef.current.scrollLeft += 470
-    }
-    const leftScroll = () => {
-      scrollRef.current.scrollLeft -= 470
-    }
   return (
     <div className='container my-5 mx-auto px-3 md:relative'>
-        <h1 className='font-semibold text-2xl capitalize'>{heading}</h1>
-        <button onClick={leftScroll}  className="w-9 h-9 hidden bg-white absolute font-bold top-[50%] z-10 -translate-y-[50%] left-0 text-xl hover:text-2xl duration-100 rounded shadow-md md:flex justify-center items-center">
-                <FaAngleLeft/>
-        </button>
-        <button onClick={rightScroll} className="w-9 h-9 hidden bg-white absolute top-[50%] z-10 -translate-y-[50%] right-0 font-bold text-xl hover:text-2xl duration-100 rounded shadow-md md:flex justify-center items-center">
-                <FaAngleRight/>
-          </button>
+        <h1 className='font-semibold text-2xl capitalize md:mx-5 lg:mx-0'>{heading}</h1>
         {
           isLoading===true ? 
           (
-            <div ref={scrollRef} className='md:mt-2 mt-3 gap-5 overflow-scroll scrollbar-none flex transition-all duration-1000 rounded-md mb-2'>
+            <div ref={scrollRef} className='mt-2 gap-5 grid rounded-md mb-2'>
           {
             loadingList.map((product,index)=>{
               return (
@@ -52,7 +37,7 @@ const VerticalCardProduct = ({category,heading}) => {
                         <div className="text-slate-500 line-through px-5 py-1 bg-slate-400 border-[2px] rounded-full border-slate-400"></div>
                       </div>
                       <div className="md:min-w-full md:max-w-full mt-4 md:mt-5 mx-auto">
-                          <div className="bg-slate-400 md:mx-auto md:min-w-[90%] md:max-w-[90%] min-w-[80%] max-w-[80%] md:py-3 py-2 px-4 md:px-6 text-center text-white font-medium rounded-full" onClick={(e)=>AddToCart(e,product?._id)}></div>
+                          <div className="bg-slate-400 md:mx-auto md:min-w-[90%] md:max-w-[90%] min-w-[80%] max-w-[80%] md:py-3 py-2 px-4 md:px-6 text-center text-white font-medium rounded-full"></div>
                       </div>
                     </div>
                   </div>
@@ -64,7 +49,7 @@ const VerticalCardProduct = ({category,heading}) => {
           )
           :
           (
-          <div ref={scrollRef} className='mt-2 gap-5 overflow-scroll scrollbar-none flex transition-all duration-1000 rounded-md mb-2'>
+          <div ref={scrollRef} className='mt-2 grid gap-y-6 justify-between md:mx-5 lg:mx-0 md:grid-cols-[repeat(auto-fit,minmax(160px,213px))] lg:grid-cols-[repeat(auto-fit,minmax(300px,310px))] rounded-md mb-2'>
                 {
                   data.map((product,index)=>{
                     return (
@@ -84,12 +69,12 @@ const VerticalCardProduct = ({category,heading}) => {
                               <div className="text-slate-500 line-through">PKR{product?.sellingPrice}</div>
                             </div>
                             <div className="md:min-w-full md:max-w-full mt-[5px] md:mt-2 mx-auto">
-                              {
-                                cartSelector && cartSelector.some(item => item.productId === product?._id) ?
-                                <div className="border-red-600 border-[2px] hover:bg-red-600 hover:text-white mx-auto w-[100%] bg-white py-[1px] px-3 md:px-6 text-center text-red-600 font-medium rounded-full"onClick={(e)=>{ AddToCart(e,product?._id,dispatch)}}>Remove from Cart</div>
+                            {
+                            cartSelector && cartSelector.some(item => item.productId === product?._id) ?
+                                <div className="bg-white hover:bg-red-600 hover:text-white border-red-600 border-[2px] mx-auto w-[90%] py-[1px] transition-all duration-200 px-2 md:px-3 text-center text-red-600 font-medium rounded-full"onClick={(e)=> AddToCart(e,product?._id,dispatch)}>Remove from Cart</div>
                                 :
-                                <div className="bg-red-600 mx-auto w-[90%] hover:bg-red-700 py-[2px] transition-all duration-200 px-4 md:px-6 text-center text-white font-medium rounded-full"onClick={(e)=>{ AddToCart(e,product?._id,dispatch)}}>Add to Cart</div>
-                              }
+                                <div className="bg-red-600 mx-auto w-[90%] hover:bg-red-700 py-[2px] transition-all duration-200 px-4 md:px-6 text-center text-white font-medium rounded-full"onClick={(e)=> AddToCart(e,product?._id,dispatch)}>Add to Cart</div>
+                            }
                             </div>
                           </div>
                         </div>
@@ -104,4 +89,4 @@ const VerticalCardProduct = ({category,heading}) => {
   )
 }
 
-export default VerticalCardProduct
+export default CategoryWiseProduct

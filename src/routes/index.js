@@ -9,6 +9,7 @@ import AllUsers from "../pages/AllUsers";
 import Products from "../pages/AllProducts";
 import ProtectedRoutes from "../components/ProtectedRoutes";
 import CategoryProduct from "../pages/CategoryProduct";
+import ProductDetails from "../pages/ProductDetails";
 
   const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ import CategoryProduct from "../pages/CategoryProduct";
         {
           path: "product-category/:categoryName",
           element: <CategoryProduct />,
+        },
+        {
+          path: "product/:id",
+          element: <ProductDetails />,
         },
         {
           path: "admin-panel/",

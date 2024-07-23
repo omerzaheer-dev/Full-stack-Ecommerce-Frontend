@@ -37,7 +37,7 @@ const AllUsers = () => {
 
   useEffect(()=>{
       fetchAllUsers()
-  },[])
+  })
 
 
 return (
