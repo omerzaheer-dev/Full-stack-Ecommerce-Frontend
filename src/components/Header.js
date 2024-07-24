@@ -65,11 +65,19 @@ const Header = () => {
           )}
           <div className="flex items-center justify-center relative">
             <FaShoppingCart className="md:text-2xl text-xl" />
-            <span className="bg-red-600 py-[2px] lg:py-0 rounded-full md:px-[0.4vw] px-[0.9vw] md:font-semibold text-white absolute bottom-3 md:bottom-4 left-4 text-xs md:text-sm">
-              {
-                cartSelector && cartSelector.length
-              }
-            </span>
+            { cartSelector && cartSelector.length>0 ?
+              (
+                <span className="bg-red-600 px-[5px] py-[1px] lg:py-0 rounded-full md:font-semibold text-white absolute bottom-3 md:bottom-4 left-4 text-xs md:text-sm">
+                {
+                  cartSelector && cartSelector.length
+                }
+              </span>
+              )
+              :
+              (
+                <span></span>
+              )
+            }
           </div>
           {user?._id ? (
             <button

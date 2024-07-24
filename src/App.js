@@ -9,12 +9,8 @@ import Context from "./context"
 import { useEffect } from "react";
 import { useDispatch  } from "react-redux"
 import { setUserDetails } from "./store/userSlice";
-// import { FetchCartProducts } from "./helpers/FetchCartProducts"
-// import { setCartDetails } from "./store/cartSlice";
 function App() {
   const dispatch = useDispatch()
-  // const { data } = FetchCartProducts();
-  // dispatch(setCartDetails(data?.products));
   const fetchUserDetails = async () => {
     const dataResponse = await fetch(summaryApi.currentUser.url,{
       method:summaryApi.currentUser.method,

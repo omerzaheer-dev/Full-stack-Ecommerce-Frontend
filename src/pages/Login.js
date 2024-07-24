@@ -2,13 +2,15 @@ import React , { useState , useEffect, useContext } from 'react'
 import upload from "../assest/signin.gif"
 import { FaEye , FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import summaryApi from "../common/index"
 import Context from "../context"
+import FetchCartProducts from "../helpers/FetchCartProducts"
 const Login = () => {
   const [showPassword, setShowPassword] = useState(true)
   const [submitDisable,setsubmitDisable] = useState(true)
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const {fetchUserDetails} = useContext(Context);
   const [data, setData] = useState({
@@ -54,10 +56,11 @@ const Login = () => {
           body:JSON.stringify(data)
         })
         const dataApi = await dataResponse.json()
-        if(dataApi.success){
+        if(dataApi?.success){
+          await fetchUserDetails()
           navigate('/')
+          await FetchCartProducts(dispatch);
           toast.success(dataApi.message)
-          fetchUserDetails()
         }else{
           toast.error(dataApi.message)
         }

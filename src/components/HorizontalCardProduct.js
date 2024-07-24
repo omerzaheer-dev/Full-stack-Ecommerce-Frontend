@@ -85,7 +85,7 @@ const HorizontalCardProduct = ({category,heading}) => {
                             <div className="md:min-w-full md:max-w-full mt-[5px] md:mt-3 mx-auto">
                               {
                                 cartSelector && cartSelector.some(item => item.productId === product?._id) ?
-                                <div className="bg-white border-red-600 hover:bg-red-600 hover:text-white border-[2px] md:mx-auto md:w-[100%] w-[92%] py-[1px] px-1 md:px-2 text-center text-red-600 font-medium rounded-full" onClick={(e)=>AddToCart(e,product?._id,dispatch)}>Remove from Cart</div>
+                                <div className="bg-white border-red-600 hover:bg-red-600 hover:text-white border-[2px] md:mx-auto md:w-[100%] w-auto py-[1px] px-[3px] md:px-2 text-center text-red-600 font-medium rounded-full" onClick={(e)=>AddToCart(e,product?._id,dispatch)}>Remove from Cart</div>
                                 :
                                 <div className="bg-red-600 md:mx-auto md:w-[90%] w-[80%] hover:bg-red-700 py-[2px] px-4 md:px-6 text-center text-white font-medium rounded-full" onClick={(e)=>AddToCart(e,product?._id,dispatch)}>Add to Cart</div>
                               }

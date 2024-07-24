@@ -53,7 +53,7 @@ const summaryApi = {
         method: "POST"
     },
     productsInCart:{
-        url: `${backendDomain}/api/v1/cart/cart`,
+        url: `${backendDomain}/api/v1/cart/get-cart-products`,
         method: "GET"
     }
 }

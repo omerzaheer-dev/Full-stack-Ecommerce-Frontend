@@ -25,16 +25,16 @@ const BannerProduct = () => {
             setCurrentImage((prev)=>prev-1)
         }
     }
-    useEffect(()=>{
-        const interval = setInterval(()=>{
-            if(currentImage < desktopBanner.length-1){
-                setCurrentImage((prev)=>prev+1)
-            }else{
-                setCurrentImage(0)
-            }
-        },5000)
-        return () => clearInterval(interval)
-    },[])
+    // useEffect(()=>{
+    //     const interval = setInterval(()=>{
+    //         if(currentImage < desktopBanner.length-1){
+    //             setCurrentImage((prev)=>prev+1)
+    //         }else{
+    //             setCurrentImage(0)
+    //         }
+    //     },5000)ddd
+    //     return () => clearInterval(interval)
+    // },[])
   return (
     <div className='container mx-auto px-4 rounded'>
       <div className='w-full h-72 bg-slate-200 md:flex relative overflow-hidden hidden'>
