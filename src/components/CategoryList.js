@@ -17,7 +17,7 @@ const CategoryList = () => {
             setCategoryList(dataResponse?.data?.products)
         }
         else{
-            toast.error("something went wrong")
+            toast.error("something went wrong",{autoClose: 1000,})
         }
         setLoading(false)
 

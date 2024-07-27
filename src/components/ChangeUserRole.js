@@ -23,7 +23,7 @@ const ChangeUserRole = ({name,email,Role,onClose,reload}) => {
     })
     const roleData = await roleApi.json()
     if(roleData.success){
-      toast.success("Role updated successfully")
+      toast.success("Role updated successfully",{autoClose: 2000,})
       reload()
       onClose()
     }else{

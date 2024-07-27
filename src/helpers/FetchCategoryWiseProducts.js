@@ -19,7 +19,7 @@ export const FetchCategoryWiseProducts = (category) => {
           setData(dataResponse?.data);
         }
         else{
-          toast.error(dataResponse?.message)
+          toast.error(dataResponse?.message,{autoClose: 1000,})
         }
         setIsLoading(false);
     };

@@ -55,6 +55,14 @@ const summaryApi = {
     productsInCart:{
         url: `${backendDomain}/api/v1/cart/get-cart-products`,
         method: "GET"
+    },
+    viewCartProducts:{
+        url: `${backendDomain}/api/v1/cart/view-cart-products`,
+        method: "GET"
+    },
+    updateAddToCartProducts:{
+        url: `${backendDomain}/api/v1/cart/update-addToCart`,
+        method: "PATCH"
     }
 }
 export default summaryApi

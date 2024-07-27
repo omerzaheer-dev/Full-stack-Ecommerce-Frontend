@@ -9,20 +9,24 @@ import Context from "./context"
 import { useEffect } from "react";
 import { useDispatch  } from "react-redux"
 import { setUserDetails } from "./store/userSlice";
+import { setCartDetails } from "./store/cartSlice";
+import UseLogoutHook from "./hooks/UseLogoutHook";
 function App() {
   const dispatch = useDispatch()
+  const {logout} = UseLogoutHook()
   const fetchUserDetails = async () => {
     const dataResponse = await fetch(summaryApi.currentUser.url,{
       method:summaryApi.currentUser.method,
       credentials: 'include',
     })
     const dataApi = await dataResponse.json()
-    if(dataApi.success){
+    if(dataApi?.success){
       dispatch(setUserDetails(dataApi.data))
-
     }
     else{
       dispatch(setUserDetails(null))
+      dispatch(setCartDetails(null));
+      await logout()
     }
   }
 
@@ -36,7 +40,7 @@ function App() {
   return (
     <>
     <Context.Provider value={{fetchUserDetails}}>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} />
       <Header></Header>
       <main className="min-h-[calc(100vh-20vh)] mt-16">
         <Outlet/>

@@ -63,7 +63,7 @@ const Header = () => {
               </div>
             </div>
           )}
-          <div className="flex items-center justify-center relative">
+          <Link to="/cart" className="flex items-center justify-center relative">
             <FaShoppingCart className="md:text-2xl text-xl" />
             { cartSelector && cartSelector.length>0 ?
               (
@@ -78,7 +78,7 @@ const Header = () => {
                 <span></span>
               )
             }
-          </div>
+          </Link>
           {user?._id ? (
             <button
               onClick={handleLogout}

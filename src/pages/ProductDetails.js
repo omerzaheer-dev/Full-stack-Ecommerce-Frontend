@@ -168,7 +168,7 @@ const ProductDetails = () => {
                   <div className='flex gap-3 text-red-600 my-1'>
                     <button className='border-[2px] rounded-md transition-all border-red-600 hover:bg-red-600 hover:text-white px-2 py-1'>Buy Now</button>
                     {
-                      cartSelector && cartSelector.some(item => item.productId === id) ?
+                      cartSelector && cartSelector.some(item => item.productId._id === id) ?
                       <button className='border-[2px] border-red-600 rounded-md bg-slate-100 hover:bg-red-600 hover:text-white transition-all duration-300 text-red-600 px-2 py-1' onClick={(e)=>AddToCart(e,id,dispatch)}>Remove from Cart</button>
                       :
                       <button className='border-[2px] rounded-md duration-200 transition-all bg-red-600 hover:bg-red-700 text-white px-2 py-1' onClick={(e)=>AddToCart(e,id,dispatch)}>Add To Cart</button>

@@ -43,7 +43,7 @@ const Login = () => {
   const handleSubmit = async (e)=>{
     e.preventDefault()
     if(submitDisable){
-      toast.warning("All fields are required")
+      toast.warning("All fields are required",{autoClose: 2000,})
     }
     else{
       try {
@@ -60,9 +60,9 @@ const Login = () => {
           await fetchUserDetails()
           navigate('/')
           await FetchCartProducts(dispatch);
-          toast.success(dataApi.message)
+          toast.success(dataApi.message,{autoClose: 2000,})
         }else{
-          toast.error(dataApi.message)
+          toast.error(dataApi.message,{autoClose: 2000,})
         }
       } catch (error) {
         console.log(error)

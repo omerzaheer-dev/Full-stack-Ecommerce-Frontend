@@ -70,7 +70,7 @@ const CategoryWiseProduct = ({category,heading}) => {
                             </div>
                             <div className="md:min-w-full md:max-w-full mt-[5px] md:mt-2 mx-auto">
                             {
-                            cartSelector && cartSelector.some(item => item.productId === product?._id) ?
+                            cartSelector && cartSelector.some(item => item.productId._id === product?._id) ?
                                 <div className="bg-white hover:bg-red-600 hover:text-white border-red-600 border-[2px] mx-auto w-[90%] py-[1px] transition-all duration-200 px-2 md:px-3 text-center text-red-600 font-medium rounded-full"onClick={(e)=> AddToCart(e,product?._id,dispatch)}>Remove from Cart</div>
                                 :
                                 <div className="bg-red-600 mx-auto w-[90%] hover:bg-red-700 py-[2px] transition-all duration-200 px-4 md:px-6 text-center text-white font-medium rounded-full"onClick={(e)=> AddToCart(e,product?._id,dispatch)}>Add to Cart</div>

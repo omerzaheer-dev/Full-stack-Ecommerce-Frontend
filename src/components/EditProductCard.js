@@ -94,9 +94,9 @@ const EditProductCard = ({onClose,product,refetchData}) => {
       const dataApi = await dataResponse.json();
       if(dataApi.success){
         refetchData()
-        toast.success(dataApi.message)
+        toast.success(dataApi.message,{autoClose: 2000,})
       }else{
-        toast.error(dataApi.message)
+        toast.error(dataApi.message,{autoClose: 2000,})
       }
     }
   }

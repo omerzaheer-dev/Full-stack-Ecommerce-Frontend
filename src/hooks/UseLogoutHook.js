@@ -16,7 +16,7 @@ const UseLogoutHook = () => {
           });
           const data = await fetchData.json();
           if (data?.success) {
-            toast.success(data.message);
+            toast.success(data.message,{autoClose: 1000,});
             dispatch(setUserDetails(null));
             dispatch(setCartDetails(null));
             navigate("/login");

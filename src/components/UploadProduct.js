@@ -84,13 +84,13 @@ const UploadProduct = ({onClose,refetchData}) => {
       const dataApi = await dataResponse.json();
       if(dataApi.success){
         refetchData()
-        toast.success(dataApi.message)
+        toast.success(dataApi.message,{autoClose: 2000,})
       }else{
-        toast.error(dataApi.message)
+        toast.error(dataApi.message,{autoClose: 2000,})
       }
       }
       else{
-        toast.error("please upload a product image")
+        toast.error("please upload a product image",{autoClose: 2000,})
       }
     }
   }
