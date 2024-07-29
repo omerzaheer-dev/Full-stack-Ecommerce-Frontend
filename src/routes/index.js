@@ -11,6 +11,7 @@ import ProtectedRoutes from "../components/ProtectedRoutes";
 import CategoryProduct from "../pages/CategoryProduct";
 import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart";
+import Search from "../pages/Search";
 
   const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ import Cart from "../pages/Cart";
         {
           path: "cart",
           element: <Cart />,
+        },
+        {
+          path: "search",
+          element: <Search />,
         },
         {
           path: "product-category/:categoryName",

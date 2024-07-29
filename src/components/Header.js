@@ -4,14 +4,21 @@ import RoleObj from "../common/Role";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { FaUserAlt } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link , useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import UseLogoutHook from "../hooks/UseLogoutHook";
 const Header = () => {
   const user = useSelector((state) => state?.user?.user?.user);
+  const navigate = useNavigate()
   const cartSelector = useSelector((state) => state?.cart?.cart);
   const [displayMenu, setDisplayMenu] = useState(false);
   const {logout} = UseLogoutHook()
+  const handleSearch = (e) => {
+    const { value } = e.target
+    if(value){
+      navigate(`/search?q=${value}`)
+    }
+  }
   const handleLogout = async () => {
     await logout()
   }
@@ -23,13 +30,14 @@ const Header = () => {
             <Logo w={90} h={50} />
           </Link>
         </div>
-        <div className="hidden lg:flex items-center border rounded-full focus-within:shadow">
+        <div className="hidden md:flex items-center border rounded-full focus-within:shadow">
           <input
+            onChange={handleSearch}
             type="text"
             placeholder="Search products here"
-            className="outline-none rounded-l-full w-[20vw] pl-3 pr-1 h-8"
+            className="outline-none rounded-l-full lg:w-[20vw] w-[32vw] pl-3 pr-1 h-8"
           />
-          <div className="flex items-center justify-center bg-red-600 h-8 text-white px-4 py-1 rounded-r-full text-xl font-bold">
+          <div className="flex items-center justify-center cursor-pointer hover:bg-red-700 bg-red-600 h-8 text-white px-4 py-1 rounded-r-full text-xl font-bold">
             <BiSearchAlt2 />
           </div>
         </div>

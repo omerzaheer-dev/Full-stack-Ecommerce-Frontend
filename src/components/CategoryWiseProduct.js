@@ -53,12 +53,13 @@ const CategoryWiseProduct = ({category,heading}) => {
                 {
                   data.map((product,index)=>{
                     return (
-                      <Link to={"/product/"+product?._id} key={index} className=' md:h-[345px] md:w-[220px] rounded-md h-[280px] w-[190px] bg-red-600'>
+                      <Link to={"/product/"+product?._id} key={index} className=' md:h-[345px] md:w-[220px] rounded-md h-[280px] w-[190px] bg-red-600' onClick={()=>window.scrollTo({ top:0 , behavior:"smooth"})}>
                         <div className="w-[220px] h-[200px] hidden bg-slate-200 overflow-hidden md:flex items-center justify-center">
-                          <ImageResizerComponent imgUrl={product.productImage[0]} Width={152} Height={191} ph={197} pw={158}/>
+                          {/* <ImageResizerComponent imgUrl={product.productImage[0]} Width={152} Height={191} ph={197} pw={158}/> */}
+                          <img src={product.productImage[0]} alt="" className="max-w-[220px] mix-blend-multiply max-h-[200px] min-w-[130px] w-auto h-auto min-h-[150px]"/>
                         </div>
                         <div className="w-[190px] h-[170px] md:hidden bg-slate-200 overflow-hidden flex items-center justify-center">
-                          <ImageResizerComponent imgUrl={product.productImage[0]} Width={1200} Height={160} ph={166} pw={125}/>
+                          <ImageResizerComponent imgUrl={product.productImage[0]} Width={120} Height={160} ph={166} pw={125}/>
                         </div>
                         <div className="md:w-[220px] md:h-[145px] w-[190px] h-[110px] bg-white">
                           <div className="md:p-4 p-2">

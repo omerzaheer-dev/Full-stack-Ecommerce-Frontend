@@ -17,6 +17,12 @@ const Cart = () => {
     }
   },[user,navigate])
   const cartSelector = useSelector((state) => state?.cart?.cart);
+  const totalQuantity = cartSelector.reduce((total, item) => {
+    return total + item?.quantity;
+  }, 0);
+  const totalPrice = cartSelector.reduce((prev, item) => {
+    return prev + (item?.quantity*item?.productId?.sellingPrice);
+  }, 0);
   useEffect(()=>{
     FetchCartProducts(dispatch)
   },[dispatch])
@@ -51,7 +57,7 @@ const Cart = () => {
         (
           <div className='py-9 px-4 max-w-[100%] w-full'>
             <div className='w-[90%] bg-white p-3 mx-auto'>
-              <h1 className="text-xl font-bold text-center">No Products in Cart</h1>
+              <h1 className="text-xl font-bold text-center text-red-600">No Products in Cart</h1>
             </div>
           </div>
         )
@@ -78,19 +84,37 @@ const Cart = () => {
                           </div>
                         </div>
                           <p className="text-slate-500 mt-[-3px] text-sm">{item?.productId?.productName}</p>
-                          <p className="text-base font-medium mt-[-2px]">PKR {item?.productId?.sellingPrice}</p>
-                        <div className="max-w-min flex items-center mt-[6px] gap-[14px]">
-                          <div className="px-[3px] py-[1px] font-extralight text-sm flex items-center m-auto justify-center rounded-sm border-black border-[1px] hover:border-red-600 hover:text-white hover:bg-red-600" onClick={async()=>await updateQuantity(item?.productId?._id,item?.quantity,'dec')}><TiMinus /></div>
-                          <div className="font-semibold">{item?.quantity}</div>
-                          <div className="px-[3px] py-[1px] font-extralight text-sm flex items-center m-auto justify-center rounded-sm border-black border-[1px] hover:border-red-600 hover:text-white hover:bg-red-600" onClick={async()=>await updateQuantity(item?.productId?._id,item?.quantity,'inc')}><TiPlus /></div>
-                        </div>
+                          <p className="text-base font-medium mt-[-2px] text-red-600">PKR {item?.productId?.sellingPrice}</p>
+                          <div className='flex items-center justify-between'>
+                              <div className="max-w-min flex items-center mt-[6px] gap-[14px]">
+                                  <div className="px-[3px] py-[1px] font-extralight text-sm flex items-center m-auto justify-center rounded-sm border-black border-[1px] hover:border-red-600 hover:text-white hover:bg-red-600" onClick={async()=>await updateQuantity(item?.productId?._id,item?.quantity,'dec')}><TiMinus /></div>
+                                  <div className="font-semibold">{item?.quantity}</div>
+                                  <div className="px-[3px] py-[1px] font-extralight text-sm flex items-center m-auto justify-center rounded-sm border-black border-[1px] hover:border-red-600 hover:text-white hover:bg-red-600" onClick={async()=>await updateQuantity(item?.productId?._id,item?.quantity,'inc')}><TiPlus /></div>
+                              </div>
+                              <div className='text-lg font-medium text-red-600'>PKR {item?.quantity*item?.productId?.sellingPrice}</div>
+                          </div>
                       </div>
                     </div>
                   )
                 })
               }
             </div>
-            <div className="lg:w-[42%] w-[95%] mx-auto bg-slate-200">tdr</div>
+            <div className="lg:w-[42%] w-[95%] mx-auto bg-white">
+              <div className='w-full p-2 bg-red-600 text-white font-semibold text-lg'>Summary</div>
+              <div className="py-4 mx-6">
+                <div className='flex mb-2 items-center justify-between font-medium text-lg'>
+                  <p>Quantity :</p>
+                  <p>{totalQuantity}</p>
+                </div>
+                <div className='flex mb-2 items-center justify-between font-medium text-lg'>
+                  <p>Total Price :</p>
+                  <p>PKR {totalPrice}</p>
+                </div>
+              </div>
+              <div>
+                <button className='text-center font-bold cursor-pointer text-lg hover:bg-blue-700 text-white bg-blue-600 w-full p-2'>Payment</button>
+              </div>
+            </div>
           </div>
         )
       }
