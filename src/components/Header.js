@@ -15,8 +15,10 @@ const Header = () => {
   const {logout} = UseLogoutHook()
   const handleSearch = (e) => {
     const { value } = e.target
-    if(value){
+    if(value.length>0){
       navigate(`/search?q=${value}`)
+    }else{
+      navigate('/')
     }
   }
   const handleLogout = async () => {

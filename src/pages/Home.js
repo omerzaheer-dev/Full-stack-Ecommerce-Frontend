@@ -7,16 +7,8 @@ import HorizontalCardProduct from '../components/HorizontalCardProduct'
 import VerticalCardProduct from "../components/VerticalCardProduct"
 const Home = () => {
   const user = useSelector((state) => state?.user?.user?.user);
-  const navigate = useNavigate()
-  useEffect(()=>{
-    if(!user){
-      navigate("/login")
-    }
-  },[user,navigate])
   return (
     <div>
-      {
-        user && (
           <div>
             <CategoryList/>
             <BannerProduct/>
@@ -30,8 +22,6 @@ const Home = () => {
             <VerticalCardProduct category={"trimmer"} heading={"Trimmers"}/>
             <VerticalCardProduct category={"earphone"} heading={"Wired Earphones"}/>
           </div>
-        )
-      }
     </div>
   )
 }

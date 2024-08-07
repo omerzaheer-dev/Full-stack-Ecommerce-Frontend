@@ -10,6 +10,7 @@ const VerticalCardProduct = ({category,heading}) => {
     const loadingList = new Array(13).fill(null)
     const dispatch = useDispatch();
     const cartSelector = useSelector((state) => state?.cart?.cart);
+    const user = useSelector((state) => state?.user?.user?.user);
     // const [scroll,setScroll] = useState(0)
     const scrollRef = useRef()
     const { data, isLoading, } = FetchCategoryWiseProducts(category);
@@ -86,9 +87,9 @@ const VerticalCardProduct = ({category,heading}) => {
                             <div className="md:min-w-full md:max-w-full mt-[5px] md:mt-2 mx-auto">
                               {
                                 cartSelector && cartSelector.some(item => item.productId._id === product?._id) ?
-                                <div className="border-red-600 border-[2px] hover:bg-red-600 hover:text-white mx-auto w-[100%] bg-white py-[1px] px-3 md:px-6 text-center text-red-600 font-medium rounded-full"onClick={(e)=>{ AddToCart(e,product?._id,dispatch)}}>Remove from Cart</div>
+                                <div className="border-red-600 border-[2px] hover:bg-red-600 hover:text-white mx-auto w-[100%] bg-white py-[1px] px-3 md:px-6 text-center text-red-600 font-medium rounded-full"onClick={(e)=>{ AddToCart(e,product?._id,dispatch,user)}}>Remove from Cart</div>
                                 :
-                                <div className="bg-red-600 mx-auto w-[90%] hover:bg-red-700 py-[2px] transition-all duration-200 px-4 md:px-6 text-center text-white font-medium rounded-full"onClick={(e)=>{ AddToCart(e,product?._id,dispatch)}}>Add to Cart</div>
+                                <div className="bg-red-600 mx-auto w-[90%] hover:bg-red-700 py-[2px] transition-all duration-200 px-4 md:px-6 text-center text-white font-medium rounded-full"onClick={(e)=>{ AddToCart(e,product?._id,dispatch,user)}}>Add to Cart</div>
                               }
                             </div>
                           </div>

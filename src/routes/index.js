@@ -47,6 +47,10 @@ import Search from "../pages/Search";
           element: <CategoryProduct />,
         },
         {
+          path: "product-category",
+          element: <CategoryProduct />,
+        },
+        {
           path: "product/:id",
           element: <ProductDetails />,
         },

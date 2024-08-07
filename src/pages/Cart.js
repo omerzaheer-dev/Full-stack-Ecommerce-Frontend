@@ -13,7 +13,7 @@ const Cart = () => {
   const navigate = useNavigate()
   useEffect(()=>{
     if(!user){
-      navigate("/login")
+      navigate("/")
     }
   },[user,navigate])
   const cartSelector = useSelector((state) => state?.cart?.cart);
@@ -53,7 +53,7 @@ const Cart = () => {
   return (
     <div>
       {
-        cartSelector && cartSelector.length<=0 ?
+        user?._id && cartSelector && cartSelector.length<=0 ?
         (
           <div className='py-9 px-4 max-w-[100%] w-full'>
             <div className='w-[90%] bg-white p-3 mx-auto'>

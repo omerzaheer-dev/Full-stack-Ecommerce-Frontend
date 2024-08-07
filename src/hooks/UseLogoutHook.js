@@ -21,6 +21,10 @@ const UseLogoutHook = () => {
             dispatch(setCartDetails(null));
             navigate("/login");
           }
+          else{
+            dispatch(setUserDetails(null))
+            dispatch(setCartDetails(null));
+          }
     } catch (error) {
       console.error('Error during logout:', error);
   }};

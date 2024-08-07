@@ -49,11 +49,11 @@ const CategoryWiseProduct = ({category,heading}) => {
           )
           :
           (
-          <div ref={scrollRef} className='mt-2 grid gap-y-6 justify-between md:mx-5 lg:mx-0 md:grid-cols-[repeat(auto-fit,minmax(160px,213px))] lg:grid-cols-[repeat(auto-fit,minmax(300px,310px))] rounded-md mb-2'>
+          <div ref={scrollRef} className='mt-2 grid gap-y-6 justify-between md:gap-x-1 md:mx-5 lg:mx-0 md:grid-cols-[repeat(auto-fit,minmax(160px,213px))] lg:grid-cols-[repeat(auto-fit,minmax(160px,220px))] rounded-md mb-2'>
                 {
                   data.map((product,index)=>{
                     return (
-                      <Link to={"/product/"+product?._id} key={index} className=' md:h-[345px] md:w-[220px] rounded-md h-[280px] w-[190px] bg-red-600' onClick={()=>window.scrollTo({ top:0 , behavior:"smooth"})}>
+                      <Link to={"/product/"+product?._id} key={index} className='shadow-lg md:h-[345px] md:w-[220px] rounded-md h-[280px] w-[190px] bg-red-600' onClick={()=>window.scrollTo({ top:0 , behavior:"smooth"})}>
                         <div className="w-[220px] h-[200px] hidden bg-slate-200 overflow-hidden md:flex items-center justify-center">
                           {/* <ImageResizerComponent imgUrl={product.productImage[0]} Width={152} Height={191} ph={197} pw={158}/> */}
                           <img src={product.productImage[0]} alt="" className="max-w-[220px] mix-blend-multiply max-h-[200px] min-w-[130px] w-auto h-auto min-h-[150px]"/>

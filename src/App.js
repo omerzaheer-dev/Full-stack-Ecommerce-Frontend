@@ -24,9 +24,9 @@ function App() {
       dispatch(setUserDetails(dataApi.data))
     }
     else{
+      await logout()
       dispatch(setUserDetails(null))
       dispatch(setCartDetails(null));
-      await logout()
     }
   }
 

@@ -13,6 +13,7 @@ import ProductCategory from '../helpers/ProductCategory';
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const cartSelector = useSelector((state) => state?.cart?.cart);
+  const user = useSelector((state) => state?.user?.user?.user);
     const params = useParams()
     const { id } = params
     const [productDetails,setProductDetails] = useState({})
@@ -169,9 +170,9 @@ const ProductDetails = () => {
                     <button className='border-[2px] rounded-md transition-all border-red-600 hover:bg-red-600 hover:text-white px-2 py-1'>Buy Now</button>
                     {
                       cartSelector && cartSelector.some(item => item.productId._id === id) ?
-                      <button className='border-[2px] border-red-600 rounded-md bg-slate-100 hover:bg-red-600 hover:text-white transition-all duration-300 text-red-600 px-2 py-1' onClick={(e)=>AddToCart(e,id,dispatch)}>Remove from Cart</button>
+                      <button className='border-[2px] border-red-600 rounded-md bg-slate-100 hover:bg-red-600 hover:text-white transition-all duration-300 text-red-600 px-2 py-1' onClick={(e)=>AddToCart(e,id,dispatch,user)}>Remove from Cart</button>
                       :
-                      <button className='border-[2px] rounded-md duration-200 transition-all bg-red-600 hover:bg-red-700 text-white px-2 py-1' onClick={(e)=>AddToCart(e,id,dispatch)}>Add To Cart</button>
+                      <button className='border-[2px] rounded-md duration-200 transition-all bg-red-600 hover:bg-red-700 text-white px-2 py-1' onClick={(e)=>AddToCart(e,id,dispatch,user)}>Add To Cart</button>
                     }
                   </div>
                   <div className='mt-1 text-slate-700 font-semibold'>
