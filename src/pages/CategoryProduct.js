@@ -108,10 +108,10 @@ const CategoryProduct = () => {
   return (
     <div className="lg:container w-[100%] mx-auto lg:p-4 p-2">
       <div className='grid lg:grid-cols-[200px,1fr] md:grid-cols-[165px,1fr]'>
-        <div className=' hidden md:block lg:p-2 p-0 min-h-[calc(100vh-160px)] bg-white overflow-y-scroll'>
-          <div className='md:mt-[70px]'>
-            <h1 className="text-base uppercase font-semibold text-gray-500 pb-1 border-b-[1px] border-slate-300">Sort By</h1>
-            <form className='text-sm text-slate-800 flex flex-col gap-2 py-3'>
+        <div className=' hidden md:block lg:p-2 p-0 min-h-[calc(100vh-160px)] bg-white'>
+          <div className='md:mt-[70px] lg:mt-5'>
+            <h1 className="text-base uppercase font-semibold text-slate-500 pb-1 border-b-[1px] border-slate-300">Sort By</h1>
+            <form className='text-sm text-slate-950 flex flex-col gap-2 py-3'>
               <div className="flex items-center gap-2">
                 <input type="radio" name='sortBy' value={"asc"} checked={sortBy==="asc"} onChange={(e)=>setSortBy(e.target.value)}/>
                 <label>Price - Low To High</label>
@@ -124,7 +124,7 @@ const CategoryProduct = () => {
           </div>
           <div>
             <h1 className="text-base uppercase font-semibold text-gray-500 pb-1 border-b-[1px] border-slate-300">Category</h1>
-            <form className='text-sm text-slate-800 flex flex-col gap-2 py-3'>
+            <form className='text-sm text-slate-950 flex flex-col gap-2 py-3'>
               {
                 ProductCategory.map((cat,index)=>{
                   return(

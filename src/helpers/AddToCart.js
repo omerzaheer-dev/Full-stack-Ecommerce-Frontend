@@ -3,9 +3,11 @@ import { toast } from 'react-toastify';
 import { setCartDetails } from "../store/cartSlice";
 
 const AddToCart = async (e, id,dispatch,user) => {
-    e?.stopPropagation();
-    e?.preventDefault();
-    if(user?._id){
+    e.stopPropagation();
+    e.preventDefault();
+    if(!user){
+    toast.error("Please login to add to cart");
+    }else{
         try {
             const response = await fetch(summaryApi.addToCartProduct.url, {
                 method: summaryApi.addToCartProduct.method,
@@ -28,8 +30,6 @@ const AddToCart = async (e, id,dispatch,user) => {
             console.error("There has been a problem with your fetch operation:", error);
             toast.error("An error occurred while adding to cart.");
         }
-    }else{
-        toast.error("Please login to add to cart");
     }
 };
 
