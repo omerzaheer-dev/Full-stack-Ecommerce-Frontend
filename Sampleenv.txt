@@ -1,1 +1,2 @@
 REACT_APP_STRIPE_PUBLIC_KEY=  add key from stripe
+node version is v18.17.1.
