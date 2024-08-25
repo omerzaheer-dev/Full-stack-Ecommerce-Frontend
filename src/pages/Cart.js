@@ -1,4 +1,4 @@
-import React , { useEffect } from 'react'
+import React , { useEffect, useState } from 'react'
 import FetchCartProducts from '../helpers/FetchCartProducts';
 import { AddToCart } from '../helpers/AddToCart';
 import summaryApi from "../common";
@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 const Cart = () => {
+  const [processing,setProcessing] = useState(false)
   const user = useSelector((state) => state?.user?.user?.user);
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -57,6 +58,7 @@ const Cart = () => {
   }
   }
   const handlePayment = async () => {
+    setProcessing(true)
     try {
       const stripePromise = await loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
       const response = await fetch(summaryApi.paymentCheckout.url,{
@@ -76,9 +78,11 @@ const Cart = () => {
         }
       }else{
         console.log("failed to proceed with payment")
+        setProcessing(false)
       }
     } catch (error) {
       console.log("failed to proceed with payment")
+      setProcessing(false)
     }
   }
   return (
@@ -144,8 +148,10 @@ const Cart = () => {
                     <p>PKR {totalPrice}</p>
                   </div>
                 </div>
-                <div>
-                  <button onClick={handlePayment} className='text-center font-bold cursor-pointer text-lg hover:bg-blue-700 text-white bg-blue-600 w-full p-2'>Payment</button>
+                <div style={{position : processing && 'relative'}} className='text-center font-bold text-lg hover:bg-blue-700 text-white bg-blue-600 w-full p-2'>
+                  <button onClick={handlePayment} className={`${processing ? 'hidden' : 'w-full h-full cursor-pointer'}`}>Payment</button>
+                  <button className={`${processing ? 'inline-block' : 'hidden'}`}>Processing...</button>
+                  <span style={{display : processing ? 'inline-block' : 'none'}} className="loader absolute top-[30%] p-1 flex items-center justify-center bg-white right-[5%] translate-y-[-50%]"></span>
                 </div>
               </div>
             </div>

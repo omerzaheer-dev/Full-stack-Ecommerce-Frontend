@@ -76,5 +76,9 @@ const summaryApi = {
         url: `${backendDomain}/api/v1/payment/checkout`,
         method: "POST"
     },
+    orderList:{
+        url: `${backendDomain}/api/v1/payment/order-list`,
+        method: "GET"
+    },
 }
 export default summaryApi
