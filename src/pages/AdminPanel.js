@@ -33,6 +33,7 @@ const AdminPanel = () => {
                     <nav className='flex flex-col px-3 pt-11 gap-2'>
                       <Link to="all-users" className='font-semibold hover:bg-slate-100 px-2 py-1'>All Users</Link>
                       <Link to="all-products" className='font-semibold hover:bg-slate-100 px-2 py-1'>All Products</Link>
+                      <Link to="all-orders" className='font-semibold hover:bg-slate-100 px-2 py-1'>All Orders</Link>
                     </nav>
                   </div>
               </aside>

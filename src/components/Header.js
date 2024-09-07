@@ -68,6 +68,9 @@ const Header = () => {
                         <Link to="/admin-panel/all-products">Admin Panel</Link>
                       </nav>
                     )}
+                    <nav className="p-2 whitespace-nowrap rounded hover:bg-slate-100 hover:border-b-[0px] border-b-[1px]">
+                        <Link to="/orders">Orders</Link>
+                      </nav>
                   </div>
                 )}
               </div>

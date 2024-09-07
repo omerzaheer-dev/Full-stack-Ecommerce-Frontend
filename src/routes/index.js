@@ -5,6 +5,7 @@ import Login from "../pages/Login";
 import ForgotPassword from "../pages/ForgotPassword";
 import Signup from "../pages/Signup";
 import AdminPanel from "../pages/AdminPanel";
+import AllOrders from "../pages/AllOrders"
 import AllUsers from "../pages/AllUsers";
 import Products from "../pages/AllProducts";
 import ProtectedRoutes from "../components/ProtectedRoutes";
@@ -80,6 +81,10 @@ import Orders from "../pages/Orders";
             {
               path: "all-products",
               element: <Products />,
+            },
+            {
+              path: "all-orders",
+              element: <AllOrders/>,
             }
           ]
         },

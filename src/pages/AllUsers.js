@@ -2,11 +2,13 @@ import React , { useEffect, useState } from 'react'
 import summaryApi from '../common'
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FaEdit } from "react-icons/fa";
 import moment from "moment"
 import ChangeUserRole from '../components/ChangeUserRole';
 import UseLogout from "../hooks/UseLogoutHook"
 const AllUsers = () => {
+  const navigate = useNavigate()
   const [users,setUsers] = useState([])
   const [openUpdateRole,setOpenUpdateRole]=useState(false)
   const [updateUser,setUpdateUser]=useState({
@@ -19,6 +21,7 @@ const AllUsers = () => {
   const fetchAllUsers = async () => {
     if(user?.Role==="GENERAL"){
       toast.warning("Only Admin can watch")
+      navigate('/')
     }
     else{
       const fetchData = await fetch(summaryApi.allUsers.url,{
@@ -37,7 +40,7 @@ const AllUsers = () => {
 
   useEffect(()=>{
       fetchAllUsers()
-  })
+  },[])
 
 
 return (

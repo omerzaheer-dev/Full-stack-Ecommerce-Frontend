@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import displayINRCurrency from '../helpers/displayCurrency';
 const Cart = () => {
   const [processing,setProcessing] = useState(false)
   const user = useSelector((state) => state?.user?.user?.user);
@@ -121,14 +122,14 @@ const Cart = () => {
                             </div>
                           </div>
                             <p className="text-slate-500 mt-[-3px] text-sm">{item?.productId?.productName}</p>
-                            <p className="text-base font-medium mt-[-2px] text-red-600">PKR {item?.productId?.sellingPrice}</p>
+                            <p className="text-base font-medium mt-[-2px] text-red-600">{displayINRCurrency(item?.productId?.sellingPrice)}</p>
                             <div className='flex items-center justify-between'>
                                 <div className="max-w-min flex items-center mt-[6px] gap-[14px]">
                                     <div className="px-[3px] py-[1px] font-extralight text-sm flex items-center m-auto justify-center rounded-sm border-black border-[1px] hover:border-red-600 hover:text-white hover:bg-red-600" onClick={async()=>await updateQuantity(item?.productId?._id,item?.quantity,'dec')}><TiMinus /></div>
                                     <div className="font-semibold">{item?.quantity}</div>
                                     <div className="px-[3px] py-[1px] font-extralight text-sm flex items-center m-auto justify-center rounded-sm border-black border-[1px] hover:border-red-600 hover:text-white hover:bg-red-600" onClick={async()=>await updateQuantity(item?.productId?._id,item?.quantity,'inc')}><TiPlus /></div>
                                 </div>
-                                <div className='text-lg font-medium text-red-600'>PKR {item?.quantity*item?.productId?.sellingPrice}</div>
+                                <div className='text-lg font-medium text-red-600'>{displayINRCurrency(item?.quantity*item?.productId?.sellingPrice)}</div>
                             </div>
                         </div>
                       </div>
@@ -145,7 +146,7 @@ const Cart = () => {
                   </div>
                   <div className='flex mb-2 items-center justify-between font-medium text-lg'>
                     <p>Total Price :</p>
-                    <p>PKR {totalPrice}</p>
+                    <p>{displayINRCurrency(totalPrice)}</p>
                   </div>
                 </div>
                 <div style={{position : processing && 'relative'}} className='text-center font-bold text-lg hover:bg-blue-700 text-white bg-blue-600 w-full p-2'>

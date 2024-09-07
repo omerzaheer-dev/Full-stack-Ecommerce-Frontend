@@ -24,6 +24,10 @@ const summaryApi = {
         url: `${backendDomain}/api/v1/admin/update-user-role`,
         method: "PATCH"
     },
+    allOrders:{
+        url: `${backendDomain}/api/v1/admin//all-orders`,
+        method: "GET"
+    },
     uploadProduct:{
         url: `${backendDomain}/api/v1/product/upload-products`,
         method: "POST"
