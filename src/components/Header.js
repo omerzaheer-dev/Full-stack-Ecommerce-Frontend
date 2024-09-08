@@ -26,10 +26,10 @@ const Header = () => {
   }
   return (
     <header className="shadow-md h-16 bg-white w-full fixed top-0 z-30">
-      <div className="flex items-center justify-between px-4 py-2">
+      <div className="flex items-center justify-between px-4 py-[14px]">
         <div>
           <Link to="/">
-            <Logo w={90} h={50} />
+            <h1 className="font-bold text-2xl text-red-600">Umer Shop</h1>
           </Link>
         </div>
         <div className="hidden md:flex items-center border rounded-full focus-within:shadow">
