@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Success = () => {
   return (
     <div className='max-h-[100vh] max-w-[100vw] pt-5 box-border w-full h-[70vh]'>
-        <div className='w-[40%] h-auto bg-slate-200 mx-auto flex flex-col items-center justify-center'>
+        <div className='md:w-[40%] w-[67%] h-auto bg-slate-200 mx-auto flex flex-col items-center justify-center'>
             <div>
                 <img src={successImage} className='mix-blend-multiply py-3' width={170} height={170} alt="" />
             </div>
