@@ -41,7 +41,6 @@ const Signup = () => {
           profilePicture:file
         }
       })
-      ////////////////////////////////////
       ImageToBase64(file).then((result)=>{
         setFile(result)
       }
@@ -152,7 +151,7 @@ const Signup = () => {
 
 
 
-              <button className='px-12 py-3 bg-red-600 mt-5 mb-3 rounded-full text-white font-bold text-xl hover:scale-110 hover:bg-red-700 block mx-auto'>Sign Up</button>
+              <button type='submit' className='px-12 py-3 bg-red-600 mt-5 mb-3 rounded-full text-white font-bold text-xl hover:scale-110 hover:bg-red-700 block mx-auto'>Sign Up</button>
           </form>
           <p>Aready have an account ?  <Link to="/login" className="text-red-600 hover:underline hover:text-red-700">Login</Link></p>
         </div>
